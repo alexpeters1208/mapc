@@ -1,0 +1,36 @@
+2. Can a global variable in a C/C++ program be located in the static data section of the object module? Can it be located in the dynamic section?
+In fact, a global variable must be located in the static data section. C only allows constant expressions at the global level,
+so the call to `malloc` required to put a variable into dynamic memory can never be made at a global level.
+
+3. What is the difference between logical address and physical address?
+Logical addresses are represented in terms of an offset from the start of the object file. After relocation and linking,
+they represent addresses as offsets from the start of the load module. In contrast, physical address is the physical
+implementation of memory, and logical address is an abstraction over physical address. When logical address is mapped
+to physical address, co-located addresses may become discontiguous.
+
+4. What is the difference between object module and load module?
+The object modules are the result of compiling each individual source file. Each source file gets mapped to an object
+module, and that module represents the static data and function code for that particular source file. The load module is
+the output of relocating and linking all the object modules together with shared library code, and it can actually be
+loaded into memory.
+
+5. What does "address space" refer to?
+The "address space" of a program is the set of logical addresses mapped out by the load module. It's an abstraction over
+physical memory that enables a 1-1 mapping from the source code to physical addresses, and allows us to talk about
+operations in the source code as though they're happening directly in physical memory.
+
+6. What is the system stack for?
+The system stack is a data structure that resembles a deck of cards, and holds the function activation frames for each
+function call in a running process.
+
+7. Why does the load module have no dynamic data section even though the address space does?
+The load module is a static view of the program once it has been compiled. Dynamic data cannot be known at compile time,
+so the load module cannot include any such section.
+
+8. The statements of a C/C++ program are translated by the compiler to machine instructions. Where are these instructions stored?
+In the load module.
+
+9. Is there any difference between linking and relocation? If so, describe it.
+There is a difference - linking is the process by which multiple object modules are stitched together and combined with
+static library modules to create a single unified load module. Relocation is the process of remapping logical addresses
+in the object modules to offsets with respect to a single address where the load module itself begins.
