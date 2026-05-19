@@ -1,7 +1,7 @@
 #include <stdio.h>
-#include "chapter2/p1.h"
+#include "chapter3/t2.h"
 
 int main() {
-    printf("%d\n", f21());
+    ft32();
     return 0;
 }
