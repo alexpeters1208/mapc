@@ -1,7 +1,6 @@
-#include <stdio.h>
-#include "chapter3/t2.h"
+#include "chapter3/t3.h"
 
 int main() {
-    ft32();
+    ft33();
     return 0;
 }
